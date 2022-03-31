@@ -29,7 +29,7 @@ const options = {
     },
   },
   plugins: {
-    stacked100: { enable: true, replaceTooltipLabel: true },
+    stacked100: { enable: true, replaceTooltipLabel: false },
     datalabels: {
       display: false,
       color: "#000",
@@ -121,6 +121,21 @@ const options = {
             borderRadius: 2,
           };
         },
+        label: (tooltipItem) => {
+          const data = tooltipItem.chart.data;
+          const datasetIndex = tooltipItem.datasetIndex;
+          const index = tooltipItem.dataIndex;
+          const datasetLabel = data.datasets[datasetIndex].label || "";
+          // You can use two type values.
+          // `data.originalData` is raw values,
+          // `data.calculatedData` is percentage values, e.g. 20.5 (The total value is 100.0)
+          const originalValue = data.originalData[datasetIndex][index];
+          const rateValue = data.calculatedData[datasetIndex][index];
+
+          const hours = originalValue.toLocaleString();
+
+          return `${datasetLabel}: ${rateValue}% - ${hours}ч`;
+        },
       },
     },
   },
@@ -148,9 +163,6 @@ const options = {
           size: 14,
           family: "Manrope",
         },
-        // min: 0,
-        // max: 100,
-        // stepSize: 10,
         callback: function (value, index, ticks) {
           if (value % 20 === 0) {
             return value + "%";
@@ -161,10 +173,6 @@ const options = {
       },
     },
   },
-  // parsing: {
-  //   xAxisKey: "id",
-  //   yAxisKey: "hours",
-  // },
 };
 
 const labels = [
