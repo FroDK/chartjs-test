@@ -187,7 +187,7 @@ const data = {
   datasets: [
     {
       label: "Внутренние часы",
-      data: [450, 580, 115],
+      data: [450, 580, 114],
       borderRadius: {
         topLeft: 7,
         topRight: 7,
