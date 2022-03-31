@@ -151,13 +151,13 @@ const options = {
         // min: 0,
         // max: 100,
         // stepSize: 10,
-        // callback: function (value, index, ticks) {
-        //   if (value % 20 === 0) {
-        //     return value + "%";
-        //   } else {
-        //     return "";
-        //   }
-        // },
+        callback: function (value, index, ticks) {
+          if (value % 20 === 0) {
+            return value + "%";
+          } else {
+            return "";
+          }
+        },
       },
     },
   },
