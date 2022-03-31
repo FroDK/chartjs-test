@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ChartTest from "./Components/Content/elements/Chart";
+import { Row, Col } from "antd";
+import Navigation from "./Components/Navigation";
+import Content from "./Components/Content";
+// import json from "./data.json";
+// const { topics } = json;
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // <Row align="top">
+    //   <Col span={6}>
+    //     <Navigation topics={topics} />
+    //   </Col>
+    //   <Col span={14}>
+    //     <Content topics={topics} />
+    //   </Col>
+    // </Row>
+    <div style={{ width: "965px", margin: "35px auto", height: "630px" }}>
+      <ChartTest />
     </div>
   );
-}
+};
 
 export default App;
