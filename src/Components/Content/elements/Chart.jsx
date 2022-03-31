@@ -25,19 +25,26 @@ ChartJS.register(
 const options = {
   layout: {
     padding: {
-      top: 30,
+      top: 16,
     },
   },
   plugins: {
     stacked100: { enable: true, replaceTooltipLabel: false },
     datalabels: {
-      display: false,
-      color: "#000",
+      anchor: "end",
+      clamp: true,
+      align: "bottom",
+      offset: 4,
+      display: true,
+      color: "#fff",
       font: {
-        size: 22,
+        size: 12,
+        family: "Manrope",
       },
-      formatter: function (value, context) {
-        return value.nested.hours;
+      formatter: (_value, context) => {
+        const data = context.chart.data;
+        const { datasetIndex, dataIndex } = context;
+        return `${data.originalData[datasetIndex][dataIndex].toLocaleString()}`;
       },
     },
     legend: {
@@ -121,20 +128,20 @@ const options = {
             borderRadius: 2,
           };
         },
+        title: (tooltipItem) => {
+          const data = tooltipItem[0].chart.data;
+          const index = tooltipItem[0].dataIndex;
+          const month = data.labels[index].month;
+
+          return month;
+        },
         label: (tooltipItem) => {
           const data = tooltipItem.chart.data;
           const datasetIndex = tooltipItem.datasetIndex;
           const index = tooltipItem.dataIndex;
-          const datasetLabel = data.datasets[datasetIndex].label || "";
-          // You can use two type values.
-          // `data.originalData` is raw values,
-          // `data.calculatedData` is percentage values, e.g. 20.5 (The total value is 100.0)
-          const originalValue = data.originalData[datasetIndex][index];
           const rateValue = data.calculatedData[datasetIndex][index];
 
-          const hours = originalValue.toLocaleString();
-
-          return `${datasetLabel}: ${rateValue}% - ${hours}ч`;
+          return `${data.datasets[datasetIndex].label}: ${rateValue}%`;
         },
       },
     },
@@ -142,7 +149,7 @@ const options = {
   responsive: true,
   maintainAspectRatio: false,
   categoryPercentage: 1,
-  barPercentage: 0.5,
+  barPercentage: 0.7,
   scales: {
     x: {
       grid: {
@@ -154,6 +161,24 @@ const options = {
           size: 14,
           family: "Manrope",
         },
+        callback: function (value) {
+          return this.getLabelForValue(value).month;
+        },
+      },
+    },
+    x1: {
+      grid: {
+        drawOnChartArea: false,
+      },
+      position: "top",
+      ticks: {
+        font: {
+          size: 14,
+          family: "Manrope",
+        },
+        callback: function (value) {
+          return this.getLabelForValue(value).hours;
+        },
       },
     },
     y: {
@@ -163,7 +188,7 @@ const options = {
           size: 14,
           family: "Manrope",
         },
-        callback: function (value, index, ticks) {
+        callback: function (value) {
           if (value % 20 === 0) {
             return value + "%";
           } else {
@@ -176,18 +201,18 @@ const options = {
 };
 
 const labels = [
-  "Январь",
-  "Февраль",
-  "Март",
-  "Апрель",
-  "Май",
-  "Июнь",
-  "Июль",
-  "Август",
-  "Сентябрь",
-  "Октябрь",
-  "Ноябрь",
-  "Декабрь",
+  { month: "Январь", hours: 9200 },
+  { month: "Ферваль", hours: 10400 },
+  { month: "Март", hours: 9800 },
+  { month: "Апрель", hours: 11000 },
+  { month: "Май", hours: 8700 },
+  { month: "Июнь", hours: 10700 },
+  { month: "Июль", hours: 9600 },
+  { month: "Август", hours: 1100 },
+  { month: "Сентябрь", hours: 12400 },
+  { month: "Октябрь", hours: 10500 },
+  { month: "Ноябрь", hours: 10900 },
+  { month: "Декабрь", hours: 9900 },
 ];
 
 const data = {
@@ -195,7 +220,7 @@ const data = {
   datasets: [
     {
       label: "Внутренние часы",
-      data: [450, 580, 114],
+      data: [45100, 58300, 11204],
       borderRadius: {
         topLeft: 7,
         topRight: 7,
@@ -210,7 +235,7 @@ const data = {
     },
     {
       label: "Простой",
-      data: [999, 210, 322],
+      data: [99409, 21200, 32012],
       borderRadius: {
         topLeft: 7,
         topRight: 7,
@@ -225,7 +250,7 @@ const data = {
     },
     {
       label: "Коммерческая работа",
-      data: [290, 525, 490],
+      data: [29050, 52105, 49600],
       borderRadius: {
         topLeft: 7,
         topRight: 7,
