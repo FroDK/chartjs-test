@@ -1,26 +1,67 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import ChartjsPluginStacked100 from "chartjs-plugin-stacked100";
-import { Bar } from "react-chartjs-2";
+const bars = {
+  commercial_absolute: {
+    label: "Коммерческая работа",
+    data: [],
+    borderRadius: {
+      topLeft: 7,
+      topRight: 7,
+      bottomLeft: 7,
+      bottomRight: 7,
+    },
+    pointStyle: "rectRounded",
+    borderWidth: 2,
+    borderColor: "#ffffff00",
+    borderSkipped: false,
+    backgroundColor: "#8CCCCC",
+  },
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ChartDataLabels,
-  ChartjsPluginStacked100
-);
+  bench_absolute: {
+    label: "Простой",
+    data: [],
+    borderRadius: {
+      topLeft: 7,
+      topRight: 7,
+      bottomLeft: 7,
+      bottomRight: 7,
+    },
+    pointStyle: "rectRounded",
+    borderWidth: 2,
+    borderColor: "#ffffff00",
+    borderSkipped: false,
+    backgroundColor: "#9F72FF",
+  },
+
+  non_commercial_absolute: {
+    label: "Внутренние часы",
+    data: [],
+    borderRadius: {
+      topLeft: 7,
+      topRight: 7,
+      bottomLeft: 7,
+      bottomRight: 7,
+    },
+    pointStyle: "rectRounded",
+    borderWidth: 2,
+    borderColor: "#ffffff00",
+    borderSkipped: false,
+    backgroundColor: "#FFAA64",
+  },
+};
+
+const labels = [
+  { month: "Январь" },
+  { month: "Ферваль" },
+  { month: "Март" },
+  { month: "Апрель" },
+  { month: "Май" },
+  { month: "Июнь" },
+  { month: "Июль" },
+  { month: "Август" },
+  { month: "Сентябрь" },
+  { month: "Октябрь" },
+  { month: "Ноябрь" },
+  { month: "Декабрь" },
+];
 
 const options = {
   layout: {
@@ -41,10 +82,10 @@ const options = {
         size: 12,
         family: "Manrope",
       },
-      formatter: (_value, context) => {
+      formatter: (_, context) => {
         const data = context.chart.data;
         const { datasetIndex, dataIndex } = context;
-        return `${data.originalData[datasetIndex][dataIndex].toLocaleString()}`;
+        return (+`${data.originalData[datasetIndex][dataIndex]}`).toLocaleString();
       },
     },
     legend: {
@@ -200,74 +241,4 @@ const options = {
   },
 };
 
-const labels = [
-  { month: "Январь", hours: 9200 },
-  { month: "Ферваль", hours: 10400 },
-  { month: "Март", hours: 9800 },
-  { month: "Апрель", hours: 11000 },
-  { month: "Май", hours: 8700 },
-  { month: "Июнь", hours: 10700 },
-  { month: "Июль", hours: 9600 },
-  { month: "Август", hours: 1100 },
-  { month: "Сентябрь", hours: 12400 },
-  { month: "Октябрь", hours: 10500 },
-  { month: "Ноябрь", hours: 10900 },
-  { month: "Декабрь", hours: 9900 },
-];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "Внутренние часы",
-      data: [45100, 58300, 11204],
-      borderRadius: {
-        topLeft: 7,
-        topRight: 7,
-        bottomLeft: 7,
-        bottomRight: 7,
-      },
-      pointStyle: "rectRounded",
-      borderWidth: 2,
-      borderColor: "#ffffff00",
-      borderSkipped: false,
-      backgroundColor: "#FFAA64",
-    },
-    {
-      label: "Простой",
-      data: [99409, 21200, 32012],
-      borderRadius: {
-        topLeft: 7,
-        topRight: 7,
-        bottomLeft: 7,
-        bottomRight: 7,
-      },
-      pointStyle: "rectRounded",
-      borderWidth: 2,
-      borderColor: "#ffffff00",
-      borderSkipped: false,
-      backgroundColor: "#9F72FF",
-    },
-    {
-      label: "Коммерческая работа",
-      data: [29050, 52105, 49600],
-      borderRadius: {
-        topLeft: 7,
-        topRight: 7,
-        bottomLeft: 7,
-        bottomRight: 7,
-      },
-      pointStyle: "rectRounded",
-      borderWidth: 2,
-      borderColor: "#ffffff00",
-      borderSkipped: false,
-      backgroundColor: "#8CCCCC",
-    },
-  ],
-};
-
-const ChartTest = () => {
-  return <Bar options={options} data={data} />;
-};
-
-export default ChartTest;
+export { options, labels, bars };

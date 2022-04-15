@@ -1,22 +1,10 @@
-import ChartTest from "./Components/Content/elements/Chart";
-import { Row, Col } from "antd";
-import Navigation from "./Components/Navigation";
-import Content from "./Components/Content";
-// import json from "./data.json";
-// const { topics } = json;
+import PowerChart from "./Components/Content/elements/PowerChart";
 
 const App = () => {
   return (
-    // <Row align="top">
-    //   <Col span={6}>
-    //     <Navigation topics={topics} />
-    //   </Col>
-    //   <Col span={14}>
-    //     <Content topics={topics} />
-    //   </Col>
-    // </Row>
-    <div style={{ width: "965px", margin: "35px auto", height: "630px" }}>
-      <ChartTest />
+    <div style={{ width: "965px", margin: "0 auto", height: "630px" }}>
+      <PowerChart />
+      {/* <SummaryChart /> */}
     </div>
   );
 };

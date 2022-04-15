@@ -1,0 +1,43 @@
+{
+  "timePoints": [
+    {
+      "timePoint": "2022",
+      "fact_commercial_labor": "86413.25",
+      "fact_non_commercial_labor": "6532.5",
+      "fact_commercial_gph": "12345",
+      "fact_non_commercial_gph": "5432",
+      "plan_worktime": "800000",
+      "commercial_absolute": "58219",
+      "non_commercial_absolute": "25000",
+      "bench_absolute": "23123",
+      "plan_worktime_per_day": "520",
+      "fact_worktime_per_day": "392"
+    },
+    {
+      "timePoint": "2022",
+      "fact_commercial_labor": "86413.25",
+      "fact_non_commercial_labor": "6532.5",
+      "fact_commercial_gph": "12345",
+      "fact_non_commercial_gph": "5432",
+      "plan_worktime": "800000",
+      "commercial_absolute": "82192",
+      "non_commercial_absolute": "31000",
+      "bench_absolute": "23123",
+      "plan_worktime_per_day": "520",
+      "fact_worktime_per_day": "392"
+    },
+    {
+      "timePoint": "2022",
+      "fact_commercial_labor": "86413.25",
+      "fact_non_commercial_labor": "6532.5",
+      "fact_commercial_gph": "12345",
+      "fact_non_commercial_gph": "5432",
+      "plan_worktime": "800000",
+      "commercial_absolute": "69210",
+      "non_commercial_absolute": "15200",
+      "bench_absolute": "23123",
+      "plan_worktime_per_day": "520",
+      "fact_worktime_per_day": "392"
+    }
+  ]
+}
